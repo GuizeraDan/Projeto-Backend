@@ -30,8 +30,11 @@ export class UsersController {
     return this.usersService.createUser(CreateUserDto);
   }
 
-  @Put() async updateUser(@Body() CreateUserDto: CreateUserDto) {
-    return this.usersService.updateUser(CreateUserDto);
+  @Put(":id") async updateUser(
+    @Body() CreateUserDto: CreateUserDto,
+    @Param("id") id: string,
+  ) {
+    return this.usersService.updateUser(CreateUserDto, parseInt(id));
   }
 
   @Delete() async deleteUser(@Body() CreateUserDto: CreateUserDto) {
